@@ -19,7 +19,7 @@ In this project you will be given a set of requirements and must design a databa
 
 ### Files to Complete
 
-1. `package.json`
+1. `package.json` ✅
 2. `index.js`
 3. `api/server.js`
 4. `model.js` inside `api/project`, `api/resource` and `api/task`
