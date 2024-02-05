@@ -9,7 +9,7 @@ server.use(express.json());
 
 server.use('/api/projects', projectRouter)
 server.use('/api/resources', resourceRouter)
-
+server.use('/api/tasks', taskRouter)
 
 server.use('*', (req, res)=> {
     res.json('you hit me')
