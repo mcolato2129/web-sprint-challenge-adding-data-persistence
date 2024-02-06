@@ -19,7 +19,24 @@ exports.up = async function(knex) {
     table.increments('task_id')
     table.string('task_description').notNullable()
     table.string('task_note')
-
+    table.boolean('task_completed')
+  })
+  .createTable('project_resource', pr => {
+    pr.increments('project_resource_id')
+    pr.integer('project_id')
+        .unsigned()
+        .notNullable()
+        .references('project_id')
+        .inTable('project')
+        .onDelete('CASCADE')
+        .onUpdate('CASCADE')
+    pr.integer('resource_id')
+        .unsigned()
+        .notNullable()
+        .references('resource_id')
+        .inTable('resource')
+        .onDelete('CASCADE')
+        .onUpdate('CASCADE')
   })
 };
 
@@ -29,6 +46,7 @@ exports.up = async function(knex) {
  */
 exports.down = async function(knex) {
   await knex.schema
+  .dropTableIfExists('project_resource')
   .dropTableIfExists('task')
   .dropTableIfExists('resource')
   .dropTableIfExists('project')
