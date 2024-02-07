@@ -8,7 +8,9 @@
     "test": "cross-env NODE_ENV=testing jest --verbose --runInBand --silent",
     "migrate": "knex migrate:latest",
     "rollback": "knex migrate:rollback",
-    "reset": "npm run rollback && npm run migrate"
+    "reset": "npm run rollback && npm run migrate",
+    "seed": "knex seed:run",
+    "cleanup": "knex seed:run -- specific=01-cleanup.js"
   },
   "repository": {
     "type": "git",
