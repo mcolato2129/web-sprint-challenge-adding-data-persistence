@@ -4,18 +4,18 @@
  */
 exports.up = function(knex) {
   return knex.schema
-  .createTable('projects', (table) => {
+  .createTable('projects', table => {
     table.increments('project_id')
     table.string('project_name').notNullable()
     table.string('project_description')
     table.boolean('project_completed')
   })
-  .createTable('resources', (table) => {
+  .createTable('resources', table => {
     table.increments('resource_id')
     table.string('resource_name').notNullable()
     table.string('resource_description')
   })
-  .createTable('tasks', (table) => {
+  .createTable('tasks', table => {
     table.increments('task_id')
     table.string('task_description').notNullable()
     table.string('task_note')
@@ -28,7 +28,7 @@ exports.up = function(knex) {
         .onDelete('CASCADE')
         .onUpdate('CASCADE')
   })
-  .createTable('project_resources', (pr) => {
+  .createTable('project_resources', pr => {
     pr.increments('project_resource_id')
     pr.integer('project_id')
         .unsigned()
