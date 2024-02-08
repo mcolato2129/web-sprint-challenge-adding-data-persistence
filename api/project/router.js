@@ -10,8 +10,16 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
-router.use('/', (req, res) => {
-    res.json('Hello From the projects router!');
+router.post('/', (req, res, next) => {
+    
 })
+
+router.use((err, req, res, next) => { // eslint-disable-line
+    res.status(err.status || 500).json({
+      customMessage: 'error occured in the projects router',
+      message: err.message,
+      stack: err.stack,
+    })
+  })
 
 module.exports = router;
