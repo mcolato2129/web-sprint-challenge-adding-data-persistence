@@ -5,7 +5,7 @@ const addProject = (req, res, next) => {
         typeof project.project_name !== 'string' || 
         !project.project_name.trim()
     ){
-        next({ status: 400, message: 'invalid scheme_name' })
+        next({ status: 400, message: 'invalid project_name' })
     } else {
         next()
     }

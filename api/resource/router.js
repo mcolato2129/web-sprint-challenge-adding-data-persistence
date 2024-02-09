@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const Resources = require('./model')
-
+const { addResoruce } = require('./resourceMiddleWare')
 
 router.get('/', (req, res, next) => {
     Resources.getResources()
@@ -9,6 +9,16 @@ router.get('/', (req, res, next) => {
     })
     .catch(next)
 })
+
+router.post('/', addResoruce, (req, res, next) => {
+    const resource = req.body
+    Resources.add(resource)
+    .then(resource => {
+        res.status(201).json(resource)
+    })
+    .catch(next)
+})
+
 
 router.use((err, req, res, next) => { // eslint-disable-line
     res.status(err.status || 500).json({
