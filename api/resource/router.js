@@ -1,7 +1,21 @@
 const router = require('express').Router();
+const Resources = require('./model')
 
-router.use('/', (req, res) => {
-    res.json('Hello From the resource router!');
+
+router.get('/', (req, res, next) => {
+    Resources.getResources()
+    .then(resources => {
+        res.json(resources)
+    })
+    .catch(next)
 })
+
+router.use((err, req, res, next) => { // eslint-disable-line
+    res.status(err.status || 500).json({
+      customMessage: 'error occured in the resources router',
+      message: err.message,
+      stack: err.stack,
+    })
+  })
 
 module.exports = router;
