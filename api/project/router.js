@@ -14,7 +14,7 @@ router.get('/', (req, res, next) => {
             if(project.project_completed === 1){
                 project.project_completed = true;
             }
-            console.log(project.project_completed)
+            // console.log(project.project_completed)
         })
         res.json(projects)
     })
@@ -24,8 +24,15 @@ router.get('/', (req, res, next) => {
 router.post('/', addProject, (req, res, next) => {
     const project = req.body
     Projects.add(project)
-    .then(project_name => {
-        res.status(201).json(project_name)
+    .then(project => {
+        if(project.project_completed === 0){
+            project.project_completed = false;
+        }
+        if(project.project_completed === 1){
+            project.project_completed = true;
+        }
+        console.log(project)
+        res.status(201).json(project)
       })
       .catch(next)
 })

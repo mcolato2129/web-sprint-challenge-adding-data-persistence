@@ -1,9 +1,9 @@
 const addProject = (req, res, next) => {
-    const { project_name } = req.body;
+    const project  = req.body;
     if(
-        project_name === undefined || 
-        typeof project_name !== 'string' || 
-        !project_name.trim()
+        project.project_name === undefined || 
+        typeof project.project_name !== 'string' || 
+        !project.project_name.trim()
     ){
         next({ status: 400, message: 'invalid scheme_name' })
     } else {

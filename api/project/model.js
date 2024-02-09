@@ -8,7 +8,7 @@ function getProjects() {
 function add(project) {
        return db('projects').insert(project)
        .then(([project_id])=> {
-        console.log(project_id)
+        console.log(project)
         return db('projects').where('project_id', project_id).first()
        })
 }
